@@ -1,0 +1,61 @@
+<PreferenceScreen xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <PreferenceCategory app:title="Allgemeine Einstellungen">
+
+        <EditTextPreference
+            app:key="signature"
+            app:title="@string/signature_title"
+            app:useSimpleSummaryProvider="true" />
+
+        <!--<ListPreference
+            app:defaultValue="reply"
+            app:entries="@array/reply_entries"
+            app:entryValues="@array/reply_values"
+            app:key="reply"
+            app:title="@string/reply_title"
+            app:useSimpleSummaryProvider="true" />-->
+
+    </PreferenceCategory>
+
+    <PreferenceCategory app:title="Kontoverbindungen">
+
+        <SwitchPreferenceCompat
+            app:key="HBCI"
+            app:title="HBCI-Konto hinterlegen" />
+
+        <ListPreference
+            app:defaultValue="BANK"
+            app:dependency="HBCI"
+            app:entries="@array/bank_entries"
+            app:entryValues="@array/bank_values"
+            app:key="BANK"
+            app:title="Bank"
+            app:dialogMessage="Sollte deine Bank hier nicht aufgefüht sein informiere uns gerne darüber."
+            app:useSimpleSummaryProvider="true" />
+
+        <EditTextPreference
+            app:key="HBCI_BLZ"
+            app:dependency="HBCI"
+            app:title="BLZ der Bank"
+            app:useSimpleSummaryProvider="true"/>
+
+        <EditTextPreference
+            app:key="HBCI_NUTZER"
+            app:dependency="HBCI"
+            app:title="Benutzer"
+            app:useSimpleSummaryProvider="true"/>
+
+        <EditTextPreference
+            app:key="HBCI_PIN"
+            app:dependency="HBCI"
+            app:title="Banking Pin"
+            app:dialogMessage="Dieser muss nur einmal eingegeben werden und wir dann verschlüsselt in der Datenbank gespeichert."
+            app:useSimpleSummaryProvider="true"/>
+
+        <!-- je nach auswhl wird dass dann angezeigt
+        app:summaryOff="@string/attachment_summary_off"
+            app:summaryOn="@string/attachment_summary_on"-->
+
+    </PreferenceCategory>
+
+</PreferenceScreen>
