@@ -60,8 +60,10 @@ public class LogIn extends AppCompatActivity {
 
         if(stayLogedIN.isChecked()){
             editor.putBoolean("STAY_LOGGED_IN",true);
+            editor.apply();
         }else{
             editor.putBoolean("STAY_LOGGED_IN",false);
+            editor.apply();
         }
 
     }

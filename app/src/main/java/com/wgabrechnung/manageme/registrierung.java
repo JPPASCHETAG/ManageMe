@@ -2,12 +2,15 @@ package com.wgabrechnung.manageme;
 
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import java.util.HashMap;
+import java.util.UUID;
 
 public class registrierung extends AppCompatActivity {
 
@@ -55,13 +58,21 @@ public class registrierung extends AppCompatActivity {
             return;
         }else{
 
-            //Hier muss dann
+            String UserID = UUID.randomUUID().toString();
+
+            SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+            SharedPreferences.Editor editor = sharedPreferences.edit();
+            editor.putString("UNIQUE_ID", UserID);
+            editor.apply();
+
+
             HashMap<String, String> URLparam = new HashMap<String, String>();
             URLparam.put("MODE","0");
             URLparam.put("VORNAME",strInputVorname);
             URLparam.put("NACHNAME",strInputNachname);
             URLparam.put("MAIL",strinputMail);
             URLparam.put("PASSWORT",strInputPasswort);
+            URLparam.put("USER_ID",UserID);
             String strURL = CORE_HELPER.CREATE_URL(URLparam);
 
             System.out.println(strURL);
