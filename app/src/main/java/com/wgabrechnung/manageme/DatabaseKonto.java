@@ -11,7 +11,7 @@ import java.util.ArrayList;
 public class DatabaseKonto extends SQLiteOpenHelper {
 
     public static final String DATABASE_NAME = "MANAGE_ME";
-    public static final String TABLE_NAME = "Table_name";
+    public static final String TABLE_NAME = "KONTO";
 
 
     DatabaseKonto(Context context){
@@ -53,7 +53,7 @@ public class DatabaseKonto extends SQLiteOpenHelper {
      */
     @Override
     public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {
-        db.execSQL("DROP TABLE IF EXISTS" + TABLE_NAME);
+        db.execSQL("DROP TABLE IF EXISTS " + TABLE_NAME);
         onCreate(db);
     }
 

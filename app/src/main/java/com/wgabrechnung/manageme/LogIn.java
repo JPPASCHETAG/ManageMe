@@ -5,11 +5,14 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.app.Activity;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.SyncStatusObserver;
 import android.os.Bundle;
+import android.preference.PreferenceManager;
 import android.text.Html;
 import android.text.method.LinkMovementMethod;
 import android.view.View;
+import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.TextView;
 
@@ -48,8 +51,18 @@ public class LogIn extends AppCompatActivity {
 
         EditText mail = findViewById(R.id.LOGIN_MAIL);
         EditText passwort = findViewById(R.id.LOGIN_PASWORD);
+        CheckBox stayLogedIN = findViewById(R.id.STAY_LOGED_IN);
 
         login(mail.getText().toString(),passwort.getText().toString(),null);
+
+        SharedPreferences sharedPreferences = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+        SharedPreferences.Editor editor = sharedPreferences.edit();
+
+        if(stayLogedIN.isChecked()){
+            editor.putBoolean("STAY_LOGGED_IN",true);
+        }else{
+            editor.putBoolean("STAY_LOGGED_IN",false);
+        }
 
     }
 
